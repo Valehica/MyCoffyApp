@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+import 'package:my_coffy_app/recetaCard.dart';
+import 'package:my_coffy_app/recetasDescripcion.dart';
+
+Recetas recetas = Recetas();
+Receta recetaScroll = recetas.todasRecetas[0];
+
+class UserProfileScreen extends StatelessWidget {
+  const UserProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Valehica', // Simula el nombre de usuario
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(
+                      'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
+                ),
+                const SizedBox(width: 20),
+                Column(
+                  children: const [
+                    Text(
+                      'Seguidores',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '120',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Seguidos',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '80',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Recetas Favoritas',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            // Recetas Favoritas
+            SizedBox(
+              height: 350, // Ajusta la altura según lo que necesites
+              child: ListView.builder(
+                itemCount: recetas.todasRecetas
+                    .where((receta) => receta.esFavorito)
+                    .length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final receta = recetas.todasRecetas
+                      .where((receta) => receta.esFavorito)
+                      .toList()[index];
+                  return Container(
+                    width: 300, // Ajusta el ancho de la card
+                    child: RecetaCard(receta: receta),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Mis Recetas',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                print('Cerrar sesión');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+              ),
+              child: const Text(
+                'Cerrar Sesión',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
