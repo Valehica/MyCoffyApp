@@ -66,7 +66,7 @@ class UserProfileScreen extends StatelessWidget {
             const SizedBox(height: 16),
             // Recetas Favoritas
             SizedBox(
-              height: 350, // Ajusta la altura según lo que necesites
+              height: 350,
               child: ListView.builder(
                 itemCount: recetas.todasRecetas
                     .where((receta) => receta.esFavorito)
@@ -77,7 +77,7 @@ class UserProfileScreen extends StatelessWidget {
                       .where((receta) => receta.esFavorito)
                       .toList()[index];
                   return Container(
-                    width: 300, // Ajusta el ancho de la card
+                    width: 300,
                     child: RecetaCard(receta: receta),
                   );
                 },
@@ -88,10 +88,35 @@ class UserProfileScreen extends StatelessWidget {
               'Mis Recetas',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            SizedBox(
+              height: 350,
+              child: ListView.builder(
+                itemCount: recetas.todasRecetas.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final receta = recetas.todasRecetas.toList()[index];
+                  return Container(
+                    width: 300,
+                    child: RecetaCard(receta: receta),
+                  );
+                },
+              ),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                print('Cerrar sesión');
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('close'))
+                          ],
+                          title: const Text('Se ha cerrado la seción'),
+                        ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

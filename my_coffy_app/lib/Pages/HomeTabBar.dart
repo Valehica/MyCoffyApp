@@ -4,6 +4,8 @@ para esto se utilizo un tab bar
 */
 
 import 'package:flutter/material.dart';
+import 'package:my_coffy_app/Pages/FeedHome.dart';
+import 'package:my_coffy_app/Pages/ExplorarHome.dart';
 
 class HomeTabBar extends StatefulWidget {
   const HomeTabBar(this.outerTab, {super.key});
@@ -53,10 +55,10 @@ class _HomeTabBarState extends State<HomeTabBar> with TickerProviderStateMixin {
             controller: _tabController,
             children: <Widget>[
               Card(
-                child: Center(child: Text('${widget.outerTab}: Tu Feed')),
+                child: Center(child: FeedHomeScreen()),
               ),
               Card(
-                child: Center(child: Text('${widget.outerTab}: Descubrir')),
+                child: Center(child: ExplorarHomeScreen()),
               ),
             ],
           ),
