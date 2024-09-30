@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/HomeTabBar.dart';
 import 'package:my_coffy_app/Pages/Categorias.dart';
 import 'package:my_coffy_app/Pages/Usuario.dart';
+import 'package:my_coffy_app/createReceta.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({super.key});
@@ -22,7 +23,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
   final List<Widget> _pages = [
     const Center(child: CategoriesScreen()),
     const Center(child: HomeTabBar('home')),
-    const Center(child: Text('Agregar Tab')),
+    const Center(child: CreateRecetaScreen()),
     const Center(child: UserProfileScreen()),
   ];
 
@@ -52,7 +53,8 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           //chat
           actions: [
             IconButton(
-              icon: Icon(Icons.chat, color: Colors.blue[700]),
+              icon: Icon(Icons.chat,
+                  color: const Color.fromARGB(255, 93, 64, 55)),
               onPressed: () {
                 //se presiono el boton
                 print('Chat button pressed');
@@ -90,8 +92,10 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           ],
 
           //Personalización de colores:
-          selectedItemColor: Colors.blue[700], //Item seleccionado
-          unselectedItemColor: Colors.blue, //Items no seleccionados
+          selectedItemColor:
+              const Color.fromARGB(255, 93, 64, 55), //Item seleccionado
+          unselectedItemColor:
+              const Color.fromARGB(255, 161, 136, 127), //Items no seleccionados
           type: BottomNavigationBarType.fixed,
 
           // Personalización de tamaños:

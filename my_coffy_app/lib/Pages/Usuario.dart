@@ -119,7 +119,7 @@ class UserProfileScreen extends StatelessWidget {
                         ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: const Color.fromARGB(255, 93, 64, 55),
               ),
               child: const Text(
                 'Cerrar Sesión',

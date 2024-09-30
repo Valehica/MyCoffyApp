@@ -9,41 +9,51 @@ class FeedHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              child: ListView.builder(
-                itemCount: recetas.todasRecetas.length,
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final receta = recetas.todasRecetas.toList()[index];
-                  return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const Text(
-                          '@User212323', // Simula el nombre de usuario
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+        child: ListView.builder(
+          itemCount: recetas.todasRecetas.length,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final receta = recetas.todasRecetas.toList()[index];
+            return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const SizedBox(
+                            width: 16,
                           ),
-                        ),
-                        Container(
-                          width: 400,
-                          child: RecetaCard(receta: receta),
-                        ),
-                        SizedBox(height: 16)
-                      ]);
-                },
-              ),
-            ),
-          ],
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundImage: NetworkImage(
+                                'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            '@user1238920',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Container(
+                    width: 400,
+                    child: RecetaCard(receta: receta),
+                  ),
+                  SizedBox(height: 25)
+                ]);
+          },
         ),
       ),
     );

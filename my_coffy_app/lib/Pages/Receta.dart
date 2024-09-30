@@ -8,7 +8,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:my_coffy_app/recetasDescripcion.dart'; // Asegúrate de agregar esta dependencia en tu pubspec.yaml
 
 class RecetaDetailScreen extends StatefulWidget {
-  final Receta receta; // Cambiado para recibir un objeto Receta
+  final Receta receta;
 
   const RecetaDetailScreen({super.key, required this.receta});
 
@@ -17,50 +17,95 @@ class RecetaDetailScreen extends StatefulWidget {
 }
 
 class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
-  double _rating = 0; // Variable para la calificación por estrellas
+  double _rating = 0;
+  bool _isFavorito = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorito = widget.receta.esFavorito;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.receta.titulo), // Muestra el título de la receta
+        title: Text(widget.receta.titulo),
+        actions: [
+          IconButton(
+            icon: Icon(
+              _isFavorito ? Icons.favorite : Icons.favorite_border,
+              color: _isFavorito ? Colors.red : Colors.white,
+            ),
+            onPressed: () {
+              setState(() {
+                _isFavorito = !_isFavorito;
+              });
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            _buildImageCard(context, widget.receta.imagen), // Card con imagen
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage(
+                          'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '@user1238920',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            _buildImageCard(context, widget.receta.imagen),
             _buildDescriptionCard(context, 'Tiempo de preparación',
-                widget.receta.tiempoPreparacion, Colors.white.withOpacity(0.9)),
+                widget.receta.tiempoPreparacion, 300),
+            _buildDescriptionCard(context, 'Herramientas',
+                widget.receta.herramientas.join(", "), 300),
+            _buildDescriptionCard(context, 'Ingredientes',
+                widget.receta.ingredientes.join(", "), 300),
             _buildDescriptionCard(
-                context,
-                'Herramientas',
-                widget.receta.herramientas.join(", "),
-                Colors.white.withOpacity(0.9)),
-            _buildDescriptionCard(context, 'Descripción',
-                widget.receta.descripcion, Colors.white.withOpacity(0.9)),
-            _buildRatingSection(
-                context,
-                widget.receta
-                    .calificacion), // Sección de calificación por estrellas
+                context, 'Tipo de grano', widget.receta.tipoGrano, 300),
+            _buildDescriptionCard(
+                context, 'Tipo de cafetera', widget.receta.tipoCafetera, 300),
+            _buildDescriptionCard(
+                context, 'Descripción', widget.receta.descripcion, 300),
+            _buildRatingSection(context, widget.receta.calificacion),
+            _buildCommentSection(context)
           ],
         ),
       ),
     );
   }
 
-  // Card de descripción
   Widget _buildDescriptionCard(
-      BuildContext context, String title, String content, Color color) {
+      BuildContext context, String title, String content, double alto) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        color: color,
+        color: Colors.white.withOpacity(0.9),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
         child: SizedBox(
           width: double.infinity,
-          height: 130,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -70,12 +115,11 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                   title,
                   style: const TextStyle(
                     color: Colors.black,
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                    height: 8), // Espacio entre el título y el subtítulo
+                const SizedBox(height: 8),
                 Text(
                   content,
                   style: const TextStyle(
@@ -91,7 +135,6 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
     );
   }
 
-  //Card para mostrar una imagen
   Widget _buildImageCard(BuildContext context, String imagen) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -117,7 +160,6 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
     );
   }
 
-  // Sección de calificación por estrellas
   Widget _buildRatingSection(BuildContext context, double calificacion) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -130,9 +172,9 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Calificación de la receta',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -140,22 +182,18 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
               ),
               const SizedBox(height: 8),
               RatingBar.builder(
-                initialRating:
-                    calificacion, // mostrar calificacion segun la calificacion de la receta
+                initialRating: calificacion,
                 minRating: 0,
                 direction: Axis.horizontal,
-                allowHalfRating: true,
+                allowHalfRating: false,
                 itemCount: 5,
-                ignoreGestures:
-                    true, // opcion para que el usuario pueda cambiar la modificacion (true = no puede)
+                ignoreGestures: true,
                 itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                 itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
-                onRatingUpdate: (rating) {
-                  // actualizacion del rating
-                },
+                onRatingUpdate: (rating) {},
               ),
               const SizedBox(height: 8),
               Text(
@@ -170,5 +208,19 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
         ),
       ),
     );
+  }
+
+  //comentarios
+  Widget _buildCommentSection(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          decoration: InputDecoration(
+            labelText: 'Ingresa tu comentario',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ));
   }
 }
