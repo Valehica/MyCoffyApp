@@ -95,12 +95,11 @@ class CategoriesScreen extends StatelessWidget {
                 height: 60,
                 child: Column(
                   children: [
-                    SizedBox(height: 5),
+                    SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(width: 8),
-                        SizedBox(width: 10),
+                        SizedBox(width: 18),
                         Text(
                           title,
                           style: TextStyle(
