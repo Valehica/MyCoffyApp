@@ -1,3 +1,5 @@
+Coffe App
+
 Lista de requerimientos: 
 - El programa debe permitir guardar y gestionar recetas favoritas
 - El programa debe permitir filtrar la busqueda por tipo de gano, tipo de cafeteras, entre otros
