@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_coffy_app/recetaCard.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/recetaCard.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
 
 Recetas recetas = Recetas();
 

@@ -5,7 +5,7 @@ Ventana para mostrar una receta, recibe un tipo de dato receta
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
 
 class CreateRecetaScreen extends StatefulWidget {
   const CreateRecetaScreen({super.key});

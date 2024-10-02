@@ -2,10 +2,10 @@
 Clase para manejar el apartado de categorias, se crean 4 cards
 */
 import 'package:flutter/material.dart';
-import 'package:my_coffy_app/Pages/Receta.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
-import 'package:my_coffy_app/RecetasList.dart';
+import 'package:my_coffy_app/Pages/RecetaVentana.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/RecetasList.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});

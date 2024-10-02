@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_coffy_app/recetaCard.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/recetaCard.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
 
 Recetas recetas = Recetas();
 
@@ -27,14 +27,24 @@ class RecetasScreen extends StatelessWidget {
           ),
         ),
 
-        //chat
+        //filtro
         actions: [
           IconButton(
-            icon:
-                Icon(Icons.chat, color: const Color.fromARGB(255, 93, 64, 55)),
+            icon: Icon(Icons.filter_list,
+                color: const Color.fromARGB(255, 93, 64, 55)),
             onPressed: () {
-              //se presiono el boton
-              print('Chat button pressed');
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('close'))
+                        ],
+                        title: const Text('Se ha aplicado el filtro'),
+                      ));
             },
           ),
         ],

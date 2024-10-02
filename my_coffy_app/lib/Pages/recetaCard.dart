@@ -4,8 +4,8 @@ Clase que funciona como base para crear cards de cada receta (recibe una receta 
 */
 
 import 'package:flutter/material.dart';
-import 'package:my_coffy_app/Pages/Receta.dart';
-import 'package:my_coffy_app/recetasDescripcion.dart';
+import 'package:my_coffy_app/Pages/RecetaVentana.dart';
+import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
 
 class RecetaCard extends StatefulWidget {
   final Receta receta;

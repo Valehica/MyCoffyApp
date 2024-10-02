@@ -1,32 +1,36 @@
 /*
 Clase para controlar la base de datos de las recetas
+Esta clase solo existe en este programa para agilizar el proceso
+de mostrar las recetas en el prototitpo, en un futuro se planea implementar
+las clases reales existentes en el models
 */
 
 class Receta {
   String imagen;
-  String titulo; // Título de la receta
-  List<String> herramientas; // Herramientas necesarias
-  String tiempoPreparacion; // Tiempo de preparación
-  List<String> ingredientes; // Ingredientes de la receta
-  String descripcion; // Descripción de la receta
-  String tipoGrano; // Tipo de grano de café
-  String tipoCafetera; // Tipo de cafetera utilizada
+  String titulo;
+  List<String> herramientas;
+  String tiempoPreparacion;
+  List<String> ingredientes;
+  String descripcion;
+  String tipoGrano;
+  String tipoCafetera;
   bool esFavorito;
   double calificacion;
+  String usuario;
 
   // Constructor
-  Receta({
-    required this.imagen,
-    required this.titulo,
-    required this.herramientas,
-    required this.tiempoPreparacion,
-    required this.ingredientes,
-    required this.descripcion,
-    required this.tipoGrano,
-    required this.tipoCafetera,
-    required this.esFavorito,
-    required this.calificacion,
-  });
+  Receta(
+      {required this.imagen,
+      required this.titulo,
+      required this.herramientas,
+      required this.tiempoPreparacion,
+      required this.ingredientes,
+      required this.descripcion,
+      required this.tipoGrano,
+      required this.tipoCafetera,
+      required this.esFavorito,
+      required this.calificacion,
+      required this.usuario});
 }
 
 class Recetas {
@@ -47,6 +51,7 @@ class Recetas {
       tipoCafetera: "Cafetera de goteo",
       esFavorito: true,
       calificacion: 4.5,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -62,6 +67,7 @@ class Recetas {
       tipoCafetera: "Cafetera espresso",
       esFavorito: false,
       calificacion: 4.0,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -77,6 +83,7 @@ class Recetas {
       tipoCafetera: "Cafetera espresso",
       esFavorito: true,
       calificacion: 4.8,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -92,6 +99,7 @@ class Recetas {
       tipoCafetera: "Cafetera espresso",
       esFavorito: false,
       calificacion: 4.2,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -107,6 +115,7 @@ class Recetas {
       tipoCafetera: "Cafetera de goteo",
       esFavorito: false,
       calificacion: 3.5,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -122,6 +131,7 @@ class Recetas {
       tipoCafetera: "Cafetera espresso",
       esFavorito: false,
       calificacion: 4.3,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -136,6 +146,7 @@ class Recetas {
       tipoCafetera: "Cafetera turca",
       esFavorito: false,
       calificacion: 4.1,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -155,6 +166,7 @@ class Recetas {
       tipoCafetera: "Cafetera de goteo",
       esFavorito: false,
       calificacion: 4.6,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -169,6 +181,7 @@ class Recetas {
       tipoCafetera: "Cafetera espresso",
       esFavorito: false,
       calificacion: 4.7,
+      usuario: '@User342342',
     ));
 
     todasRecetas.add(Receta(
@@ -184,6 +197,7 @@ class Recetas {
       tipoCafetera: "Cafetera de goteo",
       esFavorito: false,
       calificacion: 4.4,
+      usuario: '@User342342',
     ));
   }
 }

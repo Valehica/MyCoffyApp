@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/HomeTabBar.dart';
 import 'package:my_coffy_app/Pages/Categorias.dart';
 import 'package:my_coffy_app/Pages/Usuario.dart';
-import 'package:my_coffy_app/createReceta.dart';
+import 'package:my_coffy_app/Pages/createReceta.dart';
+import 'package:my_coffy_app/Pages/chat.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({super.key});
@@ -57,7 +58,8 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
                   color: const Color.fromARGB(255, 93, 64, 55)),
               onPressed: () {
                 //se presiono el boton
-                print('Chat button pressed');
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatScreen()));
               },
             ),
           ],
