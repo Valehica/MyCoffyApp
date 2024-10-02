@@ -1,4 +1,4 @@
-# **Coffy App**
+# **My Coffy App**
 
 ## **Lista de requerimientos:**
 - El programa debe permitir guardar y gestionar recetas favoritas.
@@ -14,7 +14,7 @@
 - El programa debe tener un sistema de comentarios y valoración por estrellas para que los usuarios puedan conocer las opiniones de otros.
 
 ## **Descripción de la aplicación:**
-Coffy app es una app móvil dedicada a las recetas de café. Esta plataforma permite a los usuarios crear, visualizar y exportar recetas de café compartidas por la comunidad, además de contar con una selección limitada de recetas predefinidas.
+My Coffy app es una app móvil dedicada a las recetas de café. Esta plataforma permite a los usuarios crear, visualizar y exportar recetas de café compartidas por la comunidad, además de contar con una selección limitada de recetas predefinidas.
 
 En la ventana principal, **Home**, encontrarás dos secciones clave:
 - **Tu feed**: Aquí se mostrarán las recetas de las personas que sigues, además de recomendaciones basadas en las recetas que comparten quienes siguen a tus seguidores, manteniendo el contenido alineado con tus preferencias.
