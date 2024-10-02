@@ -23,3 +23,6 @@ En la ventana principal, **Home**, encontrarás dos secciones clave:
 La aplicación también cuenta con una **sección de categorías** que te permite acceder a las recetas de manera más sencilla y rápida. Además, dispone de un **buscador con filtros** para que puedas encontrar recetas específicas según tus preferencias. En la parte inferior de la pantalla, encontrarás un **ícono** que te permitirá agregar tus propias recetas con facilidad.
 
 Con una cuenta de usuario, podrás seguir a otros miembros de la comunidad, guardar tus recetas, marcar tus favoritas, y aprovechar el sistema de chat para compartir recetas y comunicarte con tus amigos.
+
+## **Video presentación:**
+https://drive.google.com/file/d/1CZ71ql_h6jAc7ZV3h_OlHqBtg9mga9gT/view?usp=sharing 
