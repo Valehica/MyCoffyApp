@@ -5,11 +5,13 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pantalla de Login'),
+        title: const Text('Pantalla de Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -18,30 +20,30 @@ class LoginScreen extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: userController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Usuario:',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Contraseña:',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => BottomNavigationBarApp()),
+                      builder: (context) => const BottomNavigationBarApp()),
                 );
               },
-              child: Text('Iniciar sesión'),
+              child: const Text('Iniciar sesión'),
             ),
           ],
         ),

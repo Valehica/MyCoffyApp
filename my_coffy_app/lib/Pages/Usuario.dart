@@ -24,7 +24,7 @@ class UserProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(
@@ -32,9 +32,9 @@ class UserProfileScreen extends StatelessWidget {
                   backgroundImage: NetworkImage(
                       'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
                 ),
-                const SizedBox(width: 20),
+                SizedBox(width: 20),
                 Column(
-                  children: const [
+                  children: [
                     Text(
                       'Seguidores',
                       style:
@@ -76,7 +76,7 @@ class UserProfileScreen extends StatelessWidget {
                   final receta = recetas.todasRecetas
                       .where((receta) => receta.esFavorito)
                       .toList()[index];
-                  return Container(
+                  return SizedBox(
                     width: 300,
                     child: RecetaCard(receta: receta),
                   );
@@ -95,7 +95,7 @@ class UserProfileScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final receta = recetas.todasRecetas.toList()[index];
-                  return Container(
+                  return SizedBox(
                     width: 300,
                     child: RecetaCard(receta: receta),
                   );
