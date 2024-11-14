@@ -1,56 +1,61 @@
 import 'dart:convert';
 import 'usuario_class.dart';
-import 'ingredientes_class.dart';
-import 'comentarios_class.dart';
 
 class Receta {
-  String titulo;
-  String imagen;
-  List<Ingrediente> ingredientes;
-  List<String> pasos;
-  String productosAsociados;
-  int tiempoPreparacion;
-  String tipoCafetera;
-  String tipoGrano;
-  Usuario usuarioCreador;
-  double valoracionPromedio;
-  List<Comentario> comentarios;
+  late String titulo;
+  late String imagen;
+  late List<String> ingredientes;
+  late List<String> pasos;
+  late List<String> productosAsociados;
+  late int tiempoPreparacion;
+  late String tipoCafetera;
+  late String tipoGrano;
+  late Usuario usuarioCreador;
+  late double valoracionPromedio;
+  late bool favorita;
 
-  Receta({
-    required this.titulo,
-    required this.imagen,
-    required this.ingredientes,
-    required this.pasos,
-    required this.productosAsociados,
-    required this.tiempoPreparacion,
-    required this.tipoCafetera,
-    required this.tipoGrano,
-    required this.usuarioCreador,
-    this.valoracionPromedio = 0.0,
-    this.comentarios = const [],
-  });
+  Receta(
+      this.titulo,
+      this.imagen,
+      this.ingredientes,
+      this.pasos,
+      this.productosAsociados,
+      this.tiempoPreparacion,
+      this.tipoCafetera,
+      this.tipoGrano,
+      this.usuarioCreador,
+      this.valoracionPromedio);
 
-  // Método para cargar una receta desde un JSON
-  factory Receta.fromJson(Map<String, dynamic> json) {
-    return Receta(
-      titulo: json['titulo'],
-      imagen: json['imagen'],
-      ingredientes: (json['ingredientes'] as List)
-          .map((i) => Ingrediente.fromJson(i))
-          .toList(),
-      pasos: List<String>.from(json['pasos']),
-      productosAsociados: json['productosAsociados'],
-      tiempoPreparacion: json['tiempoPreparacion'],
-      tipoCafetera: json['tipoCafetera'],
-      tipoGrano: json['tipoGrano'],
-      usuarioCreador: Usuario.fromJson(json['usuarioCreador']),
-      valoracionPromedio: json['valoracionPromedio'],
-      comentarios: (json['comentarios'] as List)
-          .map((c) => Comentario.fromJson(c))
-          .toList(),
-    );
+  Map<String, dynamic> toJson() {
+    return {
+      'titulo': titulo,
+      'imagen': imagen,
+      'ingredientes': ingredientes,
+      'pasos': pasos,
+      'productosAsociados': productosAsociados,
+      'tiempoPreparacion': tiempoPreparacion,
+      'tipoCafetera': tipoCafetera,
+      'tipoGrano': tipoGrano,
+      'usuarioCreador': usuarioCreador,
+      'valoracionPromedio': valoracionPromedio,
+    };
   }
 
+  // Método para cargar una receta desde un JSON
+  Receta.fromJson(Map<String, dynamic> json) {
+    titulo = json['titulo'] as String;
+    imagen = json['imagen'] as String;
+    ingredientes = List<String>.from(json['ingredientes'] as List);
+    pasos = List<String>.from(json['pasos'] as List);
+    productosAsociados = List<String>.from(json['productosAsociados'] as List);
+    tiempoPreparacion = json['tiempoPreparacion'] as int;
+    tipoCafetera = json['tipoCafetera'] as String;
+    tipoGrano = json['tipoGrano'] as String;
+    usuarioCreador = json['usuarioCreador'] as Usuario;
+    valoracionPromedio = json['valoracionPromedio'] as double;
+    favorita = json['favorita'] as bool;
+  }
+/*
   // Método para agregar un comentario
   void agregarComentario(Comentario comentario) {
     comentarios.add(comentario);
@@ -67,5 +72,5 @@ class Receta {
     } else {
       valoracionPromedio = 0.0;
     }
-  }
+  }*/
 }
