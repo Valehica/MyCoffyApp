@@ -17,7 +17,7 @@ class RecetaDetailScreen extends StatefulWidget {
 }
 
 class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
-  double _rating = 0;
+  final double _rating = 0;
   bool _isFavorito = false;
 
   @override
@@ -52,23 +52,23 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Row(
                   children: [
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     CircleAvatar(
                       radius: 20,
                       backgroundImage: NetworkImage(
                           'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text(
                       '@user1238920',
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )

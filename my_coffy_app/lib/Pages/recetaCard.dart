@@ -10,7 +10,7 @@ import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
 class RecetaCard extends StatefulWidget {
   final Receta receta;
 
-  RecetaCard({required this.receta});
+  const RecetaCard({super.key, required this.receta});
 
   @override
   _RecetaCardState createState() => _RecetaCardState();
@@ -29,7 +29,7 @@ class _RecetaCardState extends State<RecetaCard> {
               builder: (context) => RecetaDetailScreen(receta: widget.receta)),
         );
       },
-      child: Container(
+      child: SizedBox(
         width: 300, // Ajusta el ancho según tus necesidades
         child: Card(
           elevation: 5,
@@ -41,7 +41,8 @@ class _RecetaCardState extends State<RecetaCard> {
             children: [
               // Control de la imagen
               ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(15)),
                 child: Image.network(
                   widget.receta.imagen,
                   fit: BoxFit.cover,
@@ -60,7 +61,7 @@ class _RecetaCardState extends State<RecetaCard> {
                       children: [
                         Text(
                           widget.receta.titulo,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
@@ -85,9 +86,9 @@ class _RecetaCardState extends State<RecetaCard> {
                     // Control del tiempo de preparación
                     Text(
                       'Tiempo de preparación: ${widget.receta.tiempoPreparacion}',
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     // Control calificación con estrellas
                     Row(
                       children: [
@@ -100,10 +101,10 @@ class _RecetaCardState extends State<RecetaCard> {
                             color: Colors.amber,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           widget.receta.calificacion.toString(),
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),

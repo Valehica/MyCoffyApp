@@ -14,33 +14,33 @@ class ChatScreen extends StatelessWidget {
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(20),
           ),
-          child: TextField(
+          child: const TextField(
             decoration: InputDecoration(
                 hintText: 'Buscar...',
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16)),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16)),
           ),
         ),
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           _buildChat(context, '@User21324'),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           _buildChat(context, '@User655433'),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           _buildChat(context, '@User328948'),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           _buildChat(context, '@User983478'),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           _buildChat(context, '@User023412'),
@@ -60,16 +60,16 @@ class ChatScreen extends StatelessWidget {
         height: 60,
         child: Row(
           children: [
-            SizedBox(width: 20),
-            CircleAvatar(
+            const SizedBox(width: 20),
+            const CircleAvatar(
               radius: 25,
               backgroundImage: NetworkImage(
                   'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg'),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               user,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,

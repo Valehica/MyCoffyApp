@@ -1,14 +1,23 @@
 /*
 Ventan principal, en esta clase se maneja el desplazamiento de ventanas dentro de la aplicacion 
 para esto se utilizo un Botton navigation (recurso dentro de flutter)
+
+Paginas: 
+  - Home
+  - Mi barista
+  - Mis Recetas 
+  - Mi Opinion
+  - Mi perfil 
 */
 
 import 'package:flutter/material.dart';
-import 'package:my_coffy_app/Pages/HomeTabBar.dart';
-import 'package:my_coffy_app/Pages/Categorias.dart';
-import 'package:my_coffy_app/Pages/Usuario.dart';
-import 'package:my_coffy_app/Pages/createReceta.dart';
 import 'package:my_coffy_app/Pages/chat.dart';
+
+import 'package:my_coffy_app/Pages/HomePage.dart';
+import 'package:my_coffy_app/Pages/MiBarista_Page.dart';
+import 'package:my_coffy_app/Pages/MiOpinion_Page.dart';
+import 'package:my_coffy_app/Pages/MiRecetas_Page.dart';
+import 'package:my_coffy_app/Pages/Usuario.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({super.key});
@@ -22,9 +31,10 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
 
   // Definir las páginas para cada pestaña
   final List<Widget> _pages = [
-    const Center(child: CategoriesScreen()),
-    const Center(child: HomeTabBar('home')),
-    const Center(child: CreateRecetaScreen()),
+    const Center(child: Homepage()),
+    const Center(child: MibaristaPage()),
+    const Center(child: MirecetasPage()),
+    const Center(child: MiopinionPage()),
     const Center(child: UserProfileScreen()),
   ];
 
@@ -42,11 +52,11 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
               color: Colors.grey[200],
               borderRadius: BorderRadius.circular(20),
             ),
-            child: TextField(
+            child: const TextField(
               decoration: InputDecoration(
                 hintText: 'Buscar...',
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
           ),
@@ -54,12 +64,14 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           //chat
           actions: [
             IconButton(
-              icon: Icon(Icons.chat,
-                  color: const Color.fromARGB(255, 93, 64, 55)),
+              icon: const Icon(Icons.chat,
+                  color: Color.fromARGB(255, 93, 64, 55)),
               onPressed: () {
                 //se presiono el boton
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ChatScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChatScreen()));
               },
             ),
           ],
@@ -76,16 +88,20 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           //parte visual (iconos y titulos de cada apartado)
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: 'Categorías',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.explore),
+              label: 'MiBarista',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.add),
-              label: 'Agregar',
+              label: 'MisRecetas',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: 'Opinion',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

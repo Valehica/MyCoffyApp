@@ -35,6 +35,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   flutter_native_splash: ^2.4.1
+  sqflite: ^2.0.0+3
+  path: ^1.8.0
 
 
 
@@ -62,6 +64,7 @@ flutter:
   uses-material-design: true
   assets:
   - assets/image/coffe_image.png
+  - assets/recetas.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
