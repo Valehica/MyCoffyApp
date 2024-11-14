@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/recetaCard.dart';
-import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
+import 'package:my_coffy_app/models/ingredientes_class.dart';
+import 'package:my_coffy_app/models/receta_class.dart';
+import 'package:my_coffy_app/models/recetas.dart';
 
-Recetas recetas = Recetas();
+Recetas recetas = Recetas(todasRecetas: new List.empty());
 
 class RecetasScreen extends StatelessWidget {
   const RecetasScreen({super.key});

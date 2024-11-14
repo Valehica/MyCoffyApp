@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/recetaCard.dart';
-import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
+import 'package:my_coffy_app/models/receta_class.dart';
+import 'package:my_coffy_app/models/recetas.dart';
 
-Recetas recetas = Recetas();
+Recetas recetas = Recetas(todasRecetas: List.empty());
 Receta recetaScroll = recetas.todasRecetas[0];
 
 class UserProfileScreen extends StatelessWidget {
@@ -69,12 +70,12 @@ class UserProfileScreen extends StatelessWidget {
               height: 350,
               child: ListView.builder(
                 itemCount: recetas.todasRecetas
-                    .where((receta) => receta.esFavorito)
+                    .where((receta) => false) //receta.esFavorito)
                     .length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final receta = recetas.todasRecetas
-                      .where((receta) => receta.esFavorito)
+                      .where((receta) => false) //receta.esFavorito)
                       .toList()[index];
                   return SizedBox(
                     width: 300,
