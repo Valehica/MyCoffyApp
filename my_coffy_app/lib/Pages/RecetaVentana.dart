@@ -5,7 +5,8 @@ Ventana para mostrar una receta, recibe un tipo de dato receta
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:my_coffy_app/Pages/recetasDescripcion.dart'; // Asegúrate de agregar esta dependencia en tu pubspec.yaml
+import 'package:my_coffy_app/models/receta_class.dart';
+import 'package:my_coffy_app/models/recetas.dart';
 
 class RecetaDetailScreen extends StatefulWidget {
   final Receta receta;
@@ -23,7 +24,7 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
   @override
   void initState() {
     super.initState();
-    _isFavorito = widget.receta.esFavorito;
+    _isFavorito = false; //widget.receta.esFavorito;
   }
 
   @override
@@ -76,19 +77,17 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
             ),
             _buildImageCard(context, widget.receta.imagen),
             _buildDescriptionCard(context, 'Tiempo de preparación',
-                widget.receta.tiempoPreparacion, 300),
-            _buildDescriptionCard(context, 'Herramientas',
-                widget.receta.herramientas.join(", "), 300),
+                widget.receta.tiempoPreparacion.toString(), 300),
+            _buildDescriptionCard(
+                context, 'Herramientas', widget.receta.productosAsociados, 300),
             _buildDescriptionCard(context, 'Ingredientes',
                 widget.receta.ingredientes.join(", "), 300),
             _buildDescriptionCard(
                 context, 'Tipo de grano', widget.receta.tipoGrano, 300),
             _buildDescriptionCard(
                 context, 'Tipo de cafetera', widget.receta.tipoCafetera, 300),
-            _buildDescriptionCard(
-                context, 'Descripción', widget.receta.descripcion, 300),
-            _buildRatingSection(context, widget.receta.calificacion),
-            _buildCommentSection(context)
+            _buildStepsCard(context, 'Pasos', widget.receta.pasos, 300),
+            _buildRatingSection(context, widget.receta.valoracionPromedio),
           ],
         ),
       ),
@@ -126,6 +125,56 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
                     color: Colors.black87,
                     fontSize: 13,
                   ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStepsCard(
+      BuildContext context, String title, List<String> steps, double alto) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        color: Colors.white.withOpacity(0.9),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: steps.asMap().entries.map((entry) {
+                    int idx = entry.key + 1;
+                    String step = entry.value;
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Text(
+                        '$idx. $step',
+                        style: const TextStyle(
+                          color: Colors.black87,
+                          fontSize: 13,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ],
             ),
@@ -208,19 +257,5 @@ class _RecetaDetailScreenState extends State<RecetaDetailScreen> {
         ),
       ),
     );
-  }
-
-  //comentarios
-  Widget _buildCommentSection(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          decoration: InputDecoration(
-            labelText: 'Ingresa tu comentario',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ));
   }
 }

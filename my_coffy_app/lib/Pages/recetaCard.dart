@@ -5,7 +5,7 @@ Clase que funciona como base para crear cards de cada receta (recibe una receta 
 
 import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/RecetaVentana.dart';
-import 'package:my_coffy_app/Pages/recetasDescripcion.dart';
+import 'package:my_coffy_app/models/receta_class.dart';
 
 class RecetaCard extends StatefulWidget {
   final Receta receta;
@@ -69,15 +69,17 @@ class _RecetaCardState extends State<RecetaCard> {
                         // Control si es o no favorito
                         IconButton(
                           icon: Icon(
-                            widget.receta.esFavorito
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: widget.receta.esFavorito ? Colors.red : null,
-                          ),
+                              false //widget.receta.esFavorito
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors
+                                  .white //widget.receta.esFavorito ? Colors.red : null,
+                              ),
                           onPressed: () {
                             setState(() {
-                              widget.receta.esFavorito =
+                              /*widget.receta.esFavorito =
                                   !widget.receta.esFavorito;
+                                  */
                             });
                           },
                         ),
@@ -95,7 +97,7 @@ class _RecetaCardState extends State<RecetaCard> {
                         ...List.generate(
                           5,
                           (index) => Icon(
-                            index < widget.receta.calificacion.round()
+                            index < widget.receta.valoracionPromedio.round()
                                 ? Icons.star
                                 : Icons.star_border,
                             color: Colors.amber,
@@ -103,7 +105,7 @@ class _RecetaCardState extends State<RecetaCard> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          widget.receta.calificacion.toString(),
+                          widget.receta.valoracionPromedio.toString(),
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
