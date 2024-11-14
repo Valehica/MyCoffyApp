@@ -1,76 +1,69 @@
-import 'dart:convert';
-import 'usuario_class.dart';
-
 class Receta {
-  late String titulo;
-  late String imagen;
-  late List<String> ingredientes;
-  late List<String> pasos;
-  late List<String> productosAsociados;
-  late int tiempoPreparacion;
-  late String tipoCafetera;
-  late String tipoGrano;
-  late Usuario usuarioCreador;
-  late double valoracionPromedio;
-  late bool favorita;
+  String titulo;
+  List<String> ingredientes;
+  List<String> pasos;
+  int tiempoPreparacion;
+  double valoracionPromedio;
+  bool favorita;
+  int preparada;
+  bool esMia;
+  String usuarioCreador;
+  String tipoGrano;
+  String tipoCafetera;
+  List<String> productosAsociados;
+  String imagen;
 
-  Receta(
-      this.titulo,
-      this.imagen,
-      this.ingredientes,
-      this.pasos,
-      this.productosAsociados,
-      this.tiempoPreparacion,
-      this.tipoCafetera,
-      this.tipoGrano,
-      this.usuarioCreador,
-      this.valoracionPromedio);
+  Receta({
+    required this.titulo,
+    required this.ingredientes,
+    required this.pasos,
+    required this.tiempoPreparacion,
+    required this.valoracionPromedio,
+    required this.favorita,
+    required this.preparada,
+    required this.esMia,
+    required this.usuarioCreador,
+    required this.tipoGrano,
+    required this.tipoCafetera,
+    required this.productosAsociados,
+    required this.imagen,
+  });
 
+  // Método para convertir la receta en un mapa para guardar en JSON
   Map<String, dynamic> toJson() {
     return {
       'titulo': titulo,
-      'imagen': imagen,
       'ingredientes': ingredientes,
       'pasos': pasos,
-      'productosAsociados': productosAsociados,
       'tiempoPreparacion': tiempoPreparacion,
-      'tipoCafetera': tipoCafetera,
-      'tipoGrano': tipoGrano,
-      'usuarioCreador': usuarioCreador,
       'valoracionPromedio': valoracionPromedio,
+      'favorita': favorita,
+      'preparada': preparada,
+      'esMia': esMia,
+      'usuarioCreador': usuarioCreador,
+      'tipoGrano': tipoGrano,
+      'tipoCafetera': tipoCafetera,
+      'productosAsociados': productosAsociados,
+      'imagen': imagen,
     };
   }
 
-  // Método para cargar una receta desde un JSON
-  Receta.fromJson(Map<String, dynamic> json) {
-    titulo = json['titulo'] as String;
-    imagen = json['imagen'] as String;
-    ingredientes = List<String>.from(json['ingredientes'] as List);
-    pasos = List<String>.from(json['pasos'] as List);
-    productosAsociados = List<String>.from(json['productosAsociados'] as List);
-    tiempoPreparacion = json['tiempoPreparacion'] as int;
-    tipoCafetera = json['tipoCafetera'] as String;
-    tipoGrano = json['tipoGrano'] as String;
-    usuarioCreador = json['usuarioCreador'] as Usuario;
-    valoracionPromedio = json['valoracionPromedio'] as double;
-    favorita = json['favorita'] as bool;
+  // Método para crear una receta a partir de un mapa (decodificar JSON)
+  factory Receta.fromJson(Map<String, dynamic> json) {
+    return Receta(
+      titulo: json['titulo'],
+      ingredientes: List<String>.from(json['ingredientes']),
+      pasos: List<String>.from(json['pasos']),
+      tiempoPreparacion: json['tiempoPreparacion'],
+      valoracionPromedio: json['valoracionPromedio'],
+      favorita: json['favorita'],
+      preparada: json['preparada'],
+      esMia: json['esMia'],
+      usuarioCreador: json['usuarioCreador'],
+      tipoGrano: json['tipoGrano'],
+      tipoCafetera: json['tipoCafetera'],
+      productosAsociados: List<String>.from(json['productosAsociados']),
+      imagen: json['imagen'],
+    );
   }
-/*
-  // Método para agregar un comentario
-  void agregarComentario(Comentario comentario) {
-    comentarios.add(comentario);
-    calcularValoracionPromedio();
-  }
-
-  // Método para calcular la valoración promedio
-  void calcularValoracionPromedio() {
-    if (comentarios.isNotEmpty) {
-      valoracionPromedio = comentarios
-              .map((comentario) => comentario.calificacion)
-              .reduce((a, b) => a + b) /
-          comentarios.length;
-    } else {
-      valoracionPromedio = 0.0;
-    }
-  }*/
 }

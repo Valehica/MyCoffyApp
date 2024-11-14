@@ -1,0 +1,62 @@
+[
+  {
+    "titulo": "Café Espresso",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Espresso_BW_1.jpg/1200px-Espresso_BW_1.jpg",
+    "ingredientes": ["7g de café molido", "30ml de agua"],
+    "pasos": ["Calentar el agua a 90ºC", "Extraer el espresso en 25 segundos"],
+    "productosAsociados": ["Taza pequeña", "Cafetera Espresso"],
+    "tiempoPreparacion": 5,
+    "tipoCafetera": "Espresso",
+    "tipoGrano": "Arábica",
+    "usuarioCreador": "Juan Pérez",
+    "valoracionPromedio": 4.5,
+    "favorita": true,
+    "preparada": 2,
+    "esMia": false
+  },
+  {
+    "titulo": "Café Americano",
+    "imagen": "https://www.somoselcafe.com.ar/img/novedades/47.jpg",
+    "ingredientes": ["7g de café molido", "120ml de agua caliente"],
+    "pasos": ["Preparar un espresso", "Añadir agua caliente al espresso"],
+    "productosAsociados": ["Taza grande", "Cafetera Espresso"],
+    "tiempoPreparacion": 7,
+    "tipoCafetera": "Espresso",
+    "tipoGrano": "Robusta",
+    "usuarioCreador": "Ana Gómez",
+    "valoracionPromedio": 4.2,
+    "favorita": false,
+    "preparada": 0,
+    "esMia": false
+  },
+  {
+    "titulo": "Café Latte",
+    "imagen": "https://dairyfarmersofcanada.ca/sites/default/files/image_file_browser/conso_recipe/2021/Cafe%20Latte.jpg",
+    "ingredientes": ["7g de café molido", "150ml de leche"],
+    "pasos": ["Preparar un espresso", "Añadir leche vaporizada"],
+    "productosAsociados": ["Taza grande", "Espumador de leche"],
+    "tiempoPreparacion": 10,
+    "tipoCafetera": "Espresso",
+    "tipoGrano": "Arábica",
+    "usuarioCreador": "Luis Martínez",
+    "valoracionPromedio": 4.8,
+    "favorita": true,
+    "preparada": 0,
+    "esMia": false
+  },
+  {
+    "titulo": "Café Mocha",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUePId4O4TJ1G_XTYHk7xx8Hu-JpJ5ekX-Q&s",
+    "ingredientes": ["7g de café molido", "150ml de leche", "10g de chocolate"],
+    "pasos": ["Preparar un espresso", "Añadir chocolate y mezclar", "Añadir leche vaporizada"],
+    "productosAsociados": ["Taza mediana", "Espumador de leche"],
+    "tiempoPreparacion": 12,
+    "tipoCafetera": "Espresso",
+    "tipoGrano": "Blend",
+    "usuarioCreador": "María López",
+    "valoracionPromedio": 4.7,
+    "favorita": true,
+    "preparada": 0,
+    "esMia": false
+  }
+]

@@ -1,11 +1,9 @@
-/*
-Clase que funciona como base para crear cards de cada receta (recibe una receta de la clase receta)
-
-*/
-
 import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/RecetaVentana.dart';
+import 'package:my_coffy_app/models/paletaDeColores.dart';
 import 'package:my_coffy_app/models/receta_class.dart';
+import 'package:camera/camera.dart';
+import 'dart:io';
 
 class RecetaCard extends StatefulWidget {
   final Receta receta;
@@ -17,12 +15,53 @@ class RecetaCard extends StatefulWidget {
 }
 
 class _RecetaCardState extends State<RecetaCard> {
+  late CameraController _cameraController; // Controlador de la cámara
+  late Future<void> _initializeControllerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    // Iniciar la cámara solo si se va a usar (puedes ajustarlo para tomar la foto si es necesario)
+    _initializeCamera();
+  }
+
+  Future<void> _initializeCamera() async {
+    // Obtén la lista de cámaras disponibles
+    final cameras = await availableCameras();
+    final firstCamera = cameras.first;
+
+    // Crear el controlador para la cámara
+    _cameraController = CameraController(firstCamera, ResolutionPreset.medium);
+
+    // Inicializar el controlador
+    _initializeControllerFuture = _cameraController.initialize();
+  }
+
+  // Método para capturar una foto
+  Future<void> _takePicture() async {
+    try {
+      await _initializeControllerFuture;
+      final image = await _cameraController.takePicture();
+      setState(() {
+        widget.receta.imagen =
+            image.path; // Guardamos la foto capturada en la receta
+      });
+    } catch (e) {
+      print('Error al tomar la foto: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _cameraController.dispose(); // Liberar el controlador cuando ya no se use
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         //Si se presiona
-
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -40,16 +79,37 @@ class _RecetaCardState extends State<RecetaCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Control de la imagen
-              ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(15)),
-                child: Image.network(
-                  widget.receta.imagen,
-                  fit: BoxFit.cover,
-                  height: 200,
-                  width: double.infinity,
-                ),
-              ),
+              widget.receta.imagen.startsWith('http')
+                  ? ClipRRect(
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(15)),
+                      child: Image.network(
+                        widget.receta.imagen,
+                        fit: BoxFit.cover,
+                        height: 200,
+                        width: double.infinity,
+                      ),
+                    )
+                  : ClipRRect(
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(15)),
+                      child: widget.receta.imagen.isNotEmpty
+                          ? Image.file(
+                              File(widget.receta.imagen),
+                              fit: BoxFit.cover,
+                              height: 200,
+                              width: double.infinity,
+                            )
+                          : Container(
+                              color: AppColors.plata,
+                              height: 200,
+                              width: double.infinity,
+                              child: IconButton(
+                                icon: Icon(Icons.camera_alt),
+                                onPressed: _takePicture,
+                              ),
+                            ),
+                    ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -69,17 +129,14 @@ class _RecetaCardState extends State<RecetaCard> {
                         // Control si es o no favorito
                         IconButton(
                           icon: Icon(
-                              false //widget.receta.esFavorito
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: Colors
-                                  .white //widget.receta.esFavorito ? Colors.red : null,
-                              ),
+                            widget.receta.favorita
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: widget.receta.favorita ? Colors.red : null,
+                          ),
                           onPressed: () {
                             setState(() {
-                              /*widget.receta.esFavorito =
-                                  !widget.receta.esFavorito;
-                                  */
+                              widget.receta.favorita = !widget.receta.favorita;
                             });
                           },
                         ),
@@ -100,7 +157,7 @@ class _RecetaCardState extends State<RecetaCard> {
                             index < widget.receta.valoracionPromedio.round()
                                 ? Icons.star
                                 : Icons.star_border,
-                            color: Colors.amber,
+                            color: AppColors.medio,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -115,27 +172,6 @@ class _RecetaCardState extends State<RecetaCard> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryDetailScreen extends StatelessWidget {
-  final String categoryTitle;
-
-  const CategoryDetailScreen({super.key, required this.categoryTitle});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(categoryTitle),
-      ),
-      body: Center(
-        child: Text(
-          'Detalles sobre $categoryTitle',
-          style: const TextStyle(fontSize: 24),
         ),
       ),
     );

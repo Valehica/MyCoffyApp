@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'receta_class.dart';
 
 class Usuario {
@@ -19,15 +20,49 @@ class Usuario {
     this.seguidosDeSeguidos = const [],
   });
 
-  void seguir(Usuario usuario) {
-    //Funcion para agregar seguido
+  // Método toJson para serializar Usuario a JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'nombreUsuario': nombreUsuario,
+      'email': email,
+      'contrasenia': contrasenia,
+      'listaRecetasFavoritas':
+          listaRecetasFavoritas.map((receta) => receta.toJson()).toList(),
+      'seguidores': seguidores.map((usuario) => usuario.toJson()).toList(),
+      'seguidos': seguidos.map((usuario) => usuario.toJson()).toList(),
+      'seguidosDeSeguidos':
+          seguidosDeSeguidos.map((usuario) => usuario.toJson()).toList(),
+    };
   }
 
-  void dejarDeSeguir(Usuario usuario) {
-    //Funcion para agregar seguidor
+  // Método fromJson para deserializar JSON a Usuario
+  factory Usuario.fromJson(Map<String, dynamic> json) {
+    return Usuario(
+      nombreUsuario: json['nombreUsuario'] as String,
+      email: json['email'] as String,
+      contrasenia: json['contrasenia'] as String,
+      listaRecetasFavoritas: (json['listaRecetasFavoritas'] as List<dynamic>)
+          .map((recetaJson) =>
+              Receta.fromJson(recetaJson as Map<String, dynamic>))
+          .toList(),
+      seguidores: (json['seguidores'] as List<dynamic>)
+          .map((usuarioJson) =>
+              Usuario.fromJson(usuarioJson as Map<String, dynamic>))
+          .toList(),
+      seguidos: (json['seguidos'] as List<dynamic>)
+          .map((usuarioJson) =>
+              Usuario.fromJson(usuarioJson as Map<String, dynamic>))
+          .toList(),
+      seguidosDeSeguidos: (json['seguidosDeSeguidos'] as List<dynamic>)
+          .map((usuarioJson) =>
+              Usuario.fromJson(usuarioJson as Map<String, dynamic>))
+          .toList(),
+    );
   }
 
-  void recomendaciones(Usuario usuario) {
-    //Funcion para recomendar recetas (mostrara recetas de los seguidos de tus seguidos)
-  }
+  void seguir(Usuario usuario) {}
+
+  void dejarDeSeguir(Usuario usuario) {}
+
+  void recomendaciones() {}
 }

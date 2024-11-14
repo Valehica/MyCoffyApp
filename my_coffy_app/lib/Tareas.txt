@@ -1,28 +1,27 @@
 Tareas para móviles 
 
 
-- Modificación del repositorio [VALE 5%]
-- Diagrama de arquitectura [VALE 5%]
-- Diagrama de flujo [VALE 5%]
+
 - Icono, Spash screen, paleta de colores (al menos 4 colores) [VALE 5%]
-- Inlcuir 4 recetas por lo menos [VALE 5%]
 - Crear la pantalla home. Esta debe tener: [VALE 5%]
 	- Ultimas recetas preparadas
 	- Caso inicial (no ha visto ninguna receta) [VALE 5%]
-- Crear la pantalla Mi barista. Esta debe tener:  [VALE 5%]
-	- Mostrar 4 recetas (las recetas pre definidas). Deben ser editables
+
 - Crear la pantalla de Mis recetas. Las recetas creadas deben poder ser editables, cada receta debe tener: [VALE 5%]
 	- Imagen
 	- lista de ingredientes
 	- lista de pasos
 	- Productos asociados
 - Crear la pantalla Tu opinion. Esta debe tener una encuesta que se cargue con JSON, las respuestas deben ser enviadas por correo al desarrollador [VALE 5%]
-- Agregar la función de compartir receta (Por wsp por ejemplo) (hay una dependencia para esto creo) [VALE 5%]
-- Gestionar de manera persistente la aplicación [VALE 10%]
-- Agregar la función de camara [VALE 10%]
+
 - Analizar la información de los encuestados. Los encuestados deben ser: [VALE 10%]
 	- 2 del ramo
 	- 2 de la carrera
 	- 2 externos
+
+
+- Modificación del repositorio [VALE 5%]
+- Diagrama de arquitectura [VALE 5%]
+- Diagrama de flujo [VALE 5%]
 - Crear material de apoyo [VALE 5%]	
 - Grabar la presentación [VALE 10%]

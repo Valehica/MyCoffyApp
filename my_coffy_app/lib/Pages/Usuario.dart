@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/recetaCard.dart';
 import 'package:my_coffy_app/models/receta_class.dart';
 import 'package:my_coffy_app/models/recetas.dart';
+import 'package:my_coffy_app/models/paletaDeColores.dart';
 
-Recetas recetas = Recetas(todasRecetas: List.empty());
+Recetas recetas = Recetas();
+
+Future<void> iniciar() async {
+  await recetas.cargarRecetasDesdeJson('assets/recetas.json');
+}
+
 Receta recetaScroll = recetas.todasRecetas[0];
 
 class UserProfileScreen extends StatelessWidget {
@@ -70,12 +76,12 @@ class UserProfileScreen extends StatelessWidget {
               height: 350,
               child: ListView.builder(
                 itemCount: recetas.todasRecetas
-                    .where((receta) => false) //receta.esFavorito)
+                    .where((receta) => receta.favorita)
                     .length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final receta = recetas.todasRecetas
-                      .where((receta) => false) //receta.esFavorito)
+                      .where((receta) => receta.favorita)
                       .toList()[index];
                   return SizedBox(
                     width: 300,
@@ -120,11 +126,11 @@ class UserProfileScreen extends StatelessWidget {
                         ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 93, 64, 55),
+                backgroundColor: AppColors.oscuro,
               ),
               child: const Text(
                 'Cerrar Sesión',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.plata),
               ),
             ),
           ],

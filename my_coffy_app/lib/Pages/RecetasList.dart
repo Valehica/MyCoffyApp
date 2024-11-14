@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_coffy_app/Pages/recetaCard.dart';
 import 'package:my_coffy_app/models/ingredientes_class.dart';
+import 'package:my_coffy_app/models/paletaDeColores.dart';
 import 'package:my_coffy_app/models/receta_class.dart';
 import 'package:my_coffy_app/models/recetas.dart';
 
-Recetas recetas = Recetas(todasRecetas: new List.empty());
+Recetas recetas = Recetas();
+
+Future<void> iniciar() async {
+  await recetas.cargarRecetasDesdeJson('assets/recetas.json');
+}
 
 class RecetasScreen extends StatelessWidget {
   const RecetasScreen({super.key});
@@ -17,7 +22,7 @@ class RecetasScreen extends StatelessWidget {
         elevation: 2.0,
         title: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: AppColors.plata,
             borderRadius: BorderRadius.circular(20),
           ),
           child: TextField(
@@ -32,8 +37,7 @@ class RecetasScreen extends StatelessWidget {
         //filtro
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_list,
-                color: const Color.fromARGB(255, 93, 64, 55)),
+            icon: Icon(Icons.filter_list, color: AppColors.oscuro),
             onPressed: () {
               showDialog(
                   context: context,

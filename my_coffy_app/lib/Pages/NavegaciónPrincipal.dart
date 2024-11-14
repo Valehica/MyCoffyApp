@@ -18,6 +18,7 @@ import 'package:my_coffy_app/Pages/MiBarista_Page.dart';
 import 'package:my_coffy_app/Pages/MiOpinion_Page.dart';
 import 'package:my_coffy_app/Pages/MiRecetas_Page.dart';
 import 'package:my_coffy_app/Pages/Usuario.dart';
+import 'package:my_coffy_app/models/paletaDeColores.dart';
 
 class BottomNavigationBarApp extends StatefulWidget {
   const BottomNavigationBarApp({super.key});
@@ -31,10 +32,10 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
 
   // Definir las páginas para cada pestaña
   final List<Widget> _pages = [
-    const Center(child: Homepage()),
-    const Center(child: MibaristaPage()),
-    const Center(child: MirecetasPage()),
-    const Center(child: MiopinionPage()),
+    Center(child: Home()),
+    Center(child: MiBarista()),
+    Center(child: MisRecetasScreen()),
+    Center(child: MiOpinion()),
     const Center(child: UserProfileScreen()),
   ];
 
@@ -49,7 +50,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           elevation: 2.0,
           title: Container(
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: AppColors.plata,
               borderRadius: BorderRadius.circular(20),
             ),
             child: const TextField(
@@ -64,8 +65,7 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           //chat
           actions: [
             IconButton(
-              icon: const Icon(Icons.chat,
-                  color: Color.fromARGB(255, 93, 64, 55)),
+              icon: const Icon(Icons.chat, color: AppColors.medio),
               onPressed: () {
                 //se presiono el boton
                 Navigator.push(
@@ -110,10 +110,8 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
           ],
 
           //Personalización de colores:
-          selectedItemColor:
-              const Color.fromARGB(255, 93, 64, 55), //Item seleccionado
-          unselectedItemColor:
-              const Color.fromARGB(255, 161, 136, 127), //Items no seleccionados
+          selectedItemColor: AppColors.oscuro, //Item seleccionado
+          unselectedItemColor: AppColors.medio, //Items no seleccionados
           type: BottomNavigationBarType.fixed,
 
           // Personalización de tamaños:

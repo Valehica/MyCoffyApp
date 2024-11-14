@@ -1,0 +1,35 @@
+[
+    {
+      "pregunta": "¿Qué tan fácil fue navegar por la aplicación?",
+      "tipo": "rating"
+    },
+    {
+      "pregunta": "¿El diseño de la aplicación es atractivo?",
+      "tipo": "rating"
+    },
+    {
+      "pregunta": "¿Encontraste algún error o problema durante el uso de la app?",
+      "tipo": "text"
+    },
+    {
+      "pregunta": "¿Qué funcionalidades adicionales te gustaría ver en la app?",
+      "tipo": "text"
+    },
+    {
+      "pregunta": "¿La aplicación se cargó rápidamente?",
+      "tipo": "rating"
+    },
+    {
+      "pregunta": "¿Recomendarías esta aplicación a otros?",
+      "tipo": "rating"
+    },
+    {
+      "pregunta": "¿Cómo calificarías la experiencia general en la aplicación?",
+      "tipo": "rating"
+    },
+    {
+      "pregunta": "¿Tienes alguna sugerencia para mejorar la aplicación?",
+      "tipo": "text"
+    }
+  ]
+  
